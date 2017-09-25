@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ popularMovieResponse ->
+                    Log.v(TAG, "Retrieved popular movies")
                     popularMovieResponse.movies?.let { bindMovies(it) }
                 }, { t: Throwable ->
                     Log.e(TAG, "Failed to retrieve popular movies", t)
