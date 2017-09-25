@@ -14,7 +14,6 @@ import com.example.sahibj.moviebuffs.models.Movie
  */
 class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_movie_item, parent, false)
         return ViewHolder(view)
