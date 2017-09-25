@@ -9,6 +9,8 @@ import com.example.sahibj.moviebuffs.R
 import com.example.sahibj.moviebuffs.data.MovieAdapter
 import com.example.sahibj.moviebuffs.models.Movie
 import com.example.sahibj.moviebuffs.services.MovieService
+import com.facebook.stetho.okhttp3.StethoInterceptor
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
@@ -27,10 +29,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val client = OkHttpClient.Builder()
+                .addNetworkInterceptor(StethoInterceptor())
+                .build()
+
         val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(JacksonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .client(client)
                 .build()
 
         movieService = retrofit.create(MovieService::class.java)
