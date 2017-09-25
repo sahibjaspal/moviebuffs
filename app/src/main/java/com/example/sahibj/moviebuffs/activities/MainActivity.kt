@@ -1,20 +1,19 @@
 package com.example.sahibj.moviebuffs.activities
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.example.sahibj.moviebuffs.R
 import com.example.sahibj.moviebuffs.data.MovieAdapter
 import com.example.sahibj.moviebuffs.models.Movie
-import com.example.sahibj.moviebuffs.models.PopularMovieResponse
 import com.example.sahibj.moviebuffs.services.MovieService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(JacksonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build()
 
         movieService = retrofit.create(MovieService::class.java)
@@ -48,25 +48,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun getPopularMovies() {
         movieService.getPopularMovies(SORT, API_KEY)
-                .enqueue(object : Callback<PopularMovieResponse> {
-                    override fun onResponse(call: Call<PopularMovieResponse>,
-                                            response: Response<PopularMovieResponse>) {
-
-                        if (response.isSuccessful) {
-                            Log.v(TAG, "Successfully retrieved popular movies")
-                            if (response.body() != null) {
-                                response.body()?.movies?.let {
-                                    bindMovies(it)
-                                }
-                            }
-                        } else {
-                            Log.e(TAG, "Failed to retrieve popular movies")
-                        }
-                    }
-
-                    override fun onFailure(call: Call<PopularMovieResponse>, t: Throwable) {
-                        Log.e(TAG, "Failed to retrieve popular movies", t)
-                    }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ popularMovieResponse ->
+                    popularMovieResponse.movies?.let { bindMovies(it) }
+                }, { t: Throwable ->
+                    Log.e(TAG, "Failed to retrieve popular movies", t)
                 })
     }
 
