@@ -10,11 +10,6 @@ import com.example.sahibj.moviebuffs.R
 import com.example.sahibj.moviebuffs.data.MovieAdapter
 import com.example.sahibj.moviebuffs.models.Movie
 import com.example.sahibj.moviebuffs.services.MovieService
-import com.facebook.stetho.okhttp3.StethoInterceptor
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
-import retrofit2.converter.jackson.JacksonConverterFactory
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import javax.inject.Inject
