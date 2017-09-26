@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import com.example.sahibj.moviebuffs.MovieBuffApplication
 import com.example.sahibj.moviebuffs.R
 import com.example.sahibj.moviebuffs.data.MovieAdapter
 import com.example.sahibj.moviebuffs.models.Movie
@@ -16,31 +17,23 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private val BASE_URL = "https://api.themoviedb.org/3/"
     private val API_KEY = "b2cacc567a4d73b94ca6d1e02aee273e"
-    private lateinit var movieService: MovieService
     private val SORT = "popular"
     private lateinit var movieRecyclerView: RecyclerView
+
+    @Inject
+    lateinit var movieService: MovieService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val client = OkHttpClient.Builder()
-                .addNetworkInterceptor(StethoInterceptor())
-                .build()
-
-        val retrofit = Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(JacksonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .client(client)
-                .build()
-
-        movieService = retrofit.create(MovieService::class.java)
+        (application as MovieBuffApplication).getNetComponent().inject(this)
 
         setupViews()
 
@@ -49,7 +42,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupViews() {
         movieRecyclerView = findViewById<RecyclerView>(R.id.movies)
-
         movieRecyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
     }
 
