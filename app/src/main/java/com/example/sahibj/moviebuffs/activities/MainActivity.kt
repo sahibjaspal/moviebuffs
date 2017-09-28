@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        (application as MovieBuffApplication).getNetComponent().inject(this)
+        MovieBuffApplication().getNetComponent().inject(this)
 
         setupViews()
 

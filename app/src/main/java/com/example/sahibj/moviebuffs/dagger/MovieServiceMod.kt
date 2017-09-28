@@ -11,11 +11,11 @@ import javax.inject.Singleton
  * Created by sahibj on 9/25/17.
  */
 @Module
-class MovieServiceMod {
+public class MovieServiceMod {
 
     @Provides
     @Singleton
-    fun providesMovieService(restAdapter: Retrofit): MovieService {
+    public fun providesMovieService(restAdapter: Retrofit): MovieService {
         return restAdapter.create(MovieService::class.java)
     }
 }

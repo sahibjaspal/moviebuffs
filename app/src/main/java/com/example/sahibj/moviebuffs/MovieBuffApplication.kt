@@ -3,6 +3,7 @@ package com.example.sahibj.moviebuffs
 import android.app.Application
 import com.example.sahibj.moviebuffs.dagger.AppComponent
 import com.example.sahibj.moviebuffs.dagger.AppModule
+import com.example.sahibj.moviebuffs.dagger.DaggerAppComponent
 import com.example.sahibj.moviebuffs.dagger.NetworkModule
 
 /**
@@ -15,10 +16,10 @@ class MovieBuffApplication: Application() {
     override fun onCreate() {
         super.onCreate()
 
-//        appComponent = DaggerAppComponent.builder()
-//                .appModule(AppModule(this))
-//                .networkModule(NetworkModule("https://api.themoviedb.org/3/"))
-//                .build()
+        appComponent = DaggerAppComponent.builder()
+                .appModule(AppModule(this))
+                .networkModule(NetworkModule("https://api.themoviedb.org/3/"))
+                .build()
 
     }
 
