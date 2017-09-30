@@ -1,7 +1,7 @@
 package com.example.sahibj.moviebuffs.dagger
 
-import com.example.sahibj.moviebuffs.MovieBuffApplication
 import com.example.sahibj.moviebuffs.activities.MainActivity
+import com.example.sahibj.moviebuffs.services.MovieService
 import dagger.Component
 import javax.inject.Singleton
 

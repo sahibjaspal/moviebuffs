@@ -16,8 +16,6 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private val BASE_URL = "https://api.themoviedb.org/3/"
-    private val API_KEY = "b2cacc567a4d73b94ca6d1e02aee273e"
     private val SORT = "popular"
     private lateinit var movieRecyclerView: RecyclerView
 
@@ -28,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        MovieBuffApplication().getNetComponent().inject(this)
+        (application as MovieBuffApplication).getNetComponent()?.inject(this)
 
         setupViews()
 
@@ -41,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getPopularMovies() {
-        movieService.getPopularMovies(SORT, API_KEY)
+        movieService.getPopularMovies(SORT)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ popularMovieResponse ->

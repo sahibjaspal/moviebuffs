@@ -1,17 +1,18 @@
 package com.example.sahibj.moviebuffs.dagger
 
 import android.app.Application
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
+import com.example.sahibj.moviebuffs.interceptors.MovieServiceInterceptor
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
-import android.preference.PreferenceManager
-import android.content.SharedPreferences
-import com.facebook.stetho.okhttp3.StethoInterceptor
 import okhttp3.Cache
-import retrofit2.Retrofit
 import okhttp3.OkHttpClient
+import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
+import javax.inject.Singleton
 
 
 /**
@@ -45,7 +46,12 @@ class NetworkModule(val baseUrl: String) {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(application: Application, okHttpClient: OkHttpClient): Retrofit {
+
+        val okHttpClient = okHttpClient
+                .newBuilder().addInterceptor(MovieServiceInterceptor(application))
+                .build()
+
         val retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(JacksonConverterFactory.create())

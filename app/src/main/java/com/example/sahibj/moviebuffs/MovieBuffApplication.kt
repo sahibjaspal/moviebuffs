@@ -1,17 +1,15 @@
 package com.example.sahibj.moviebuffs
 
 import android.app.Application
-import com.example.sahibj.moviebuffs.dagger.AppComponent
-import com.example.sahibj.moviebuffs.dagger.AppModule
-import com.example.sahibj.moviebuffs.dagger.DaggerAppComponent
-import com.example.sahibj.moviebuffs.dagger.NetworkModule
+import com.example.sahibj.moviebuffs.dagger.*
+
 
 /**
  * Created by sahibj on 9/25/17.
  */
-class MovieBuffApplication: Application() {
+class MovieBuffApplication : Application() {
 
-    private lateinit var appComponent: AppComponent
+    private var appComponent: AppComponent? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -19,9 +17,9 @@ class MovieBuffApplication: Application() {
         appComponent = DaggerAppComponent.builder()
                 .appModule(AppModule(this))
                 .networkModule(NetworkModule("https://api.themoviedb.org/3/"))
+                .movieServiceMod(MovieServiceMod())
                 .build()
-
     }
 
-    fun getNetComponent(): AppComponent = appComponent
+    fun getNetComponent(): AppComponent? = appComponent
 }

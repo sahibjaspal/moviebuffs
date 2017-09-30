@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">moviebuffs</string>
+    <string name="api_key">b2cacc567a4d73b94ca6d1e02aee273e</string>
 </resources>
