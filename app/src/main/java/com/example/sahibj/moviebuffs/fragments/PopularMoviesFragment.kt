@@ -1,5 +1,6 @@
 package com.example.sahibj.moviebuffs.fragments
 
+import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import com.example.sahibj.moviebuffs.MovieBuffApplication
 import com.example.sahibj.moviebuffs.R
 import com.example.sahibj.moviebuffs.data.MovieAdapter
+import com.example.sahibj.moviebuffs.databinding.PopularMoviesFragmentBinding
 import com.example.sahibj.moviebuffs.models.Movie
 import com.example.sahibj.moviebuffs.services.MovieService
 import rx.android.schedulers.AndroidSchedulers
@@ -22,21 +24,20 @@ import javax.inject.Inject
  */
 class PopularMoviesFragment : Fragment() {
 
-    lateinit var movieRecyclerView: RecyclerView
-
     @Inject
     lateinit var movieService: MovieService
 
+    lateinit var binding: PopularMoviesFragmentBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val root = inflater.inflate(R.layout.popular_movies_fragment, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.popular_movies_fragment, container, false)
 
         (activity.application as MovieBuffApplication).getNetComponent()?.inject(this)
 
-        movieRecyclerView = root.findViewById<RecyclerView>(R.id.movies)
-        movieRecyclerView.layoutManager = GridLayoutManager(activity, 2)
+        binding.movies.layoutManager = GridLayoutManager(activity, 2)
 
-        return root
+        return binding.root
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -56,7 +57,7 @@ class PopularMoviesFragment : Fragment() {
     }
 
     private fun bindMovies(movies: List<Movie>) {
-        movieRecyclerView.adapter = MovieAdapter(movies)
+        binding.movies.adapter = MovieAdapter(movies)
     }
 
     companion object {
