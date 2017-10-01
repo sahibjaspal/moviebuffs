@@ -1,7 +1,6 @@
 package com.example.sahibj.moviebuffs.dagger
 
-import com.example.sahibj.moviebuffs.activities.MainActivity
-import com.example.sahibj.moviebuffs.services.MovieService
+import com.example.sahibj.moviebuffs.fragments.PopularMoviesFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,5 +11,5 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(AppModule::class, NetworkModule::class, MovieServiceMod::class))
 interface AppComponent {
 
-    fun inject(activity: MainActivity)
+    fun inject(activity: PopularMoviesFragment)
 }

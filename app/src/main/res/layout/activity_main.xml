@@ -28,18 +28,10 @@
                 app:theme="@style/Toolbar" />
         </android.support.design.widget.AppBarLayout>
 
-        <!--<FrameLayout-->
-        <!--android:id="@+id/contentFrame"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent" />-->
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/movies"
+        <FrameLayout
+            android:id="@+id/contentFrame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="GridLayoutManager"
-            app:spanCount="2"
-            tools:listitem="@layout/layout_movie_item" />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
