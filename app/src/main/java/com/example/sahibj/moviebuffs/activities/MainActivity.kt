@@ -6,21 +6,14 @@ import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.example.sahibj.moviebuffs.R
 import com.example.sahibj.moviebuffs.fragments.PopularMoviesFragment
-import com.example.sahibj.moviebuffs.services.MovieService
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private val SORT = "popular"
-    private lateinit var movieRecyclerView: RecyclerView
-
-    @Inject
-    lateinit var movieService: MovieService
+    private lateinit var drawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +32,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
-
-    private lateinit var drawerLayout: DrawerLayout
 
     private fun setupNavigationView() {
         drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
