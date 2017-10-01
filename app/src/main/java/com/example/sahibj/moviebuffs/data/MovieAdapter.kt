@@ -1,5 +1,6 @@
 package com.example.sahibj.moviebuffs.data
 
+import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.sahibj.moviebuffs.R
+import com.example.sahibj.moviebuffs.databinding.LayoutMovieItemBinding
 import com.example.sahibj.moviebuffs.models.Movie
 
 /**
@@ -15,8 +17,11 @@ import com.example.sahibj.moviebuffs.models.Movie
 class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.layout_movie_item, parent, false)
-        return ViewHolder(view)
+
+        val binding = DataBindingUtil.inflate<LayoutMovieItemBinding>(
+                LayoutInflater.from(parent.context), R.layout.layout_movie_item, parent, false)
+
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -26,12 +31,10 @@ class MovieAdapter(private val movies: List<Movie>) : RecyclerView.Adapter<Movie
                 .into(holder.movieView)
     }
 
-    override fun getItemCount(): Int {
-        return movies.size
-    }
+    override fun getItemCount(): Int = movies.size
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(binding: LayoutMovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        internal var movieView: ImageView = view.findViewById<ImageView>(R.id.movie_image)
+        internal var movieView: ImageView = binding.movieImage
     }
 }
