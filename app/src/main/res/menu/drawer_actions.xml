@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/list_navigation_menu_item"
+        android:title="Popular Movies" />
+    <!--<item-->
+        <!--android:id="@+id/statistics_navigation_menu_item"-->
+        <!--android:icon="@drawable/ic_statistics"-->
+        <!--android:title="@string/statistics_title" />-->
+</menu>

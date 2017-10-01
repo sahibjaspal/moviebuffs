@@ -1,9 +1,12 @@
 package com.example.sahibj.moviebuffs.activities
 
 import android.os.Bundle
+import android.support.design.widget.NavigationView
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.Toolbar
 import android.util.Log
 import com.example.sahibj.moviebuffs.MovieBuffApplication
 import com.example.sahibj.moviebuffs.R
@@ -28,14 +31,38 @@ class MainActivity : AppCompatActivity() {
 
         (application as MovieBuffApplication).getNetComponent()?.inject(this)
 
+        setupToolbar()
+
         setupViews()
 
         getPopularMovies()
     }
 
+    private fun setupToolbar() {
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    private lateinit var drawerLayout: DrawerLayout
+
     private fun setupViews() {
+
+        drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        drawerLayout.setStatusBarBackground(R.color.colorPrimaryDark)
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
+        if (navigationView != null) {
+            setupDrawerContent(navigationView)
+        }
+
         movieRecyclerView = findViewById<RecyclerView>(R.id.movies)
         movieRecyclerView.layoutManager = GridLayoutManager(applicationContext, 2)
+    }
+
+    private fun setupDrawerContent(navigationView: Any) {
+
+
     }
 
     private fun getPopularMovies() {
