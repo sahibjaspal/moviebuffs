@@ -16,6 +16,7 @@ import com.example.sahibj.moviebuffs.R
 import com.example.sahibj.moviebuffs.activities.MovieDetailActivity
 import com.example.sahibj.moviebuffs.data.MovieAdapter
 import com.example.sahibj.moviebuffs.databinding.PopularMoviesFragmentBinding
+import com.example.sahibj.moviebuffs.misc.EXTRA_MOVIE_ID
 import com.example.sahibj.moviebuffs.models.Movie
 import com.example.sahibj.moviebuffs.services.MovieService
 import com.example.sahibj.moviebuffs.viewmodels.PopMoviesViewModel
@@ -41,7 +42,7 @@ class PopularMoviesFragment : LifecycleFragment() {
 
         binding.viewModel = ViewModelProviders.of(activity).get(PopMoviesViewModel::class.java)
 
-        binding.viewModel?.getOpenMovieEvent()?.observe(this, Observer { openMovieDetails() })
+        binding.viewModel?.getOpenMovieEvent()?.observe(this, Observer { movieId -> openMovieDetails(movieId) })
 
         binding.movies.layoutManager = GridLayoutManager(activity, 2)
 
@@ -68,8 +69,9 @@ class PopularMoviesFragment : LifecycleFragment() {
         binding.movies.adapter = MovieAdapter(movies, binding.viewModel)
     }
 
-    private fun openMovieDetails() {
+    private fun openMovieDetails(movieId: Int?) {
         val movieDetailIntent = Intent(activity, MovieDetailActivity::class.java)
+        movieDetailIntent.putExtra(EXTRA_MOVIE_ID, movieId)
         startActivity(movieDetailIntent)
     }
 

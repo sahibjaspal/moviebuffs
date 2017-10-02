@@ -1,5 +1,6 @@
 package com.example.sahibj.moviebuffs.services
 
+import com.example.sahibj.moviebuffs.models.MovieDetailsResponse
 import com.example.sahibj.moviebuffs.models.PopularMovieResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -12,4 +13,7 @@ interface MovieService {
 
     @GET("movie/{sort}")
     fun getPopularMovies(@Path("sort") sort: String): Observable<PopularMovieResponse>
+
+    @GET("movie/{movie_id}")
+    fun getMovieDetails(@Path("movie_id") movieId:Int): Observable<MovieDetailsResponse>
 }
