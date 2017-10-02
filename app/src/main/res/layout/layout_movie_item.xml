@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <variable
+            name="movie"
+            type="com.example.sahibj.moviebuffs.models.Movie"/>
+        <variable
+            name="listener"
+            type="com.example.sahibj.moviebuffs.useractions.MovieItemUserActionsListener" />
+    </data>
+
     <ImageView
         android:id="@+id/movie_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:onClick="@{() -> listener.onMovieItemClicked(movie)}" />
 </layout>

@@ -1,6 +1,7 @@
 package com.example.sahibj.moviebuffs.dagger
 
 import com.example.sahibj.moviebuffs.fragments.PopularMoviesFragment
+import com.example.sahibj.moviebuffs.viewmodels.PopMoviesViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,4 +13,5 @@ import javax.inject.Singleton
 interface AppComponent {
 
     fun inject(activity: PopularMoviesFragment)
+    fun inject(activity: PopMoviesViewModel)
 }
