@@ -36,7 +36,7 @@ class MovieDetailActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ movieDetailResponse ->
-                    Log.v(TAG, "Retrieved movie details")
+                    Log.v(TAG, "Retrieved movie detailss")
                 }, { t: Throwable ->
                     Log.e(TAG, "Failed to retrieve movie details", t)
                 })
