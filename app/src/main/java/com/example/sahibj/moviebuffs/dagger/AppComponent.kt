@@ -1,6 +1,7 @@
 package com.example.sahibj.moviebuffs.dagger
 
 import com.example.sahibj.moviebuffs.activities.MovieDetailActivity
+import com.example.sahibj.moviebuffs.data.remote.PopMovieRemoteDataSource
 import com.example.sahibj.moviebuffs.fragments.PopularMoviesFragment
 import com.example.sahibj.moviebuffs.viewmodels.PopMoviesViewModel
 import dagger.Component
@@ -16,4 +17,5 @@ interface AppComponent {
     fun inject(activity: PopularMoviesFragment)
     fun inject(activity: PopMoviesViewModel)
     fun inject(movieDetailActivity: MovieDetailActivity)
+    fun inject(popMovieRemoteDataSource: PopMovieRemoteDataSource)
 }

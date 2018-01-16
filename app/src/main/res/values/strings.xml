@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">moviebuffs</string>
-    <string name="api_key">api_key</string>
+    <string name="api_key"></string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.sahibj.moviebuffs.data
 
 import android.databinding.DataBindingUtil
+import android.databinding.ObservableList
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -15,10 +16,11 @@ import com.example.sahibj.moviebuffs.viewmodels.PopMoviesViewModel
 /**
  * Created by sahibj on 9/24/17.
  */
-class MovieAdapter(private val movies: List<Movie>, private val viewModel: PopMoviesViewModel?)
+class MovieAdapter(private val viewModel: PopMoviesViewModel)
     : RecyclerView.Adapter<MovieAdapter.ViewHolder>(), MovieItemUserActionsListener {
 
     private lateinit var binding: LayoutMovieItemBinding
+    val movies: ObservableList<Movie> = viewModel.movies
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 

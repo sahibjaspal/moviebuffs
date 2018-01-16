@@ -17,5 +17,5 @@ class PopularMovieResponse {
     var totalPages: Int? = null
 
     @JsonProperty("results")
-    var movies: List<Movie>? = null
+    var movies: List<Movie> = ArrayList()
 }
