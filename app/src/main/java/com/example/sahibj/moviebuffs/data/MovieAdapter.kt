@@ -48,6 +48,6 @@ class MovieAdapter(private val viewModel: PopMoviesViewModel)
     }
 
     override fun onMovieItemClicked(movie:Movie) {
-        viewModel?.getOpenMovieEvent()?.value = movie.id
+        viewModel.getOpenMovieEvent().value = movie.id
     }
 }

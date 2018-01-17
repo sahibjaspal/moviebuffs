@@ -4,16 +4,30 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.example.sahibj.moviebuffs.viewmodels.PopMoviesViewModel" />
     </data>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/movies"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="GridLayoutManager"
-        app:spanCount="2"
-        tools:listitem="@layout/layout_movie_item" />
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.dataLoading? View.VISIBLE : View.GONE}"
+            android:layout_gravity="center_vertical|center_horizontal" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/movies"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{viewModel.dataLoading? View.GONE : View.VISIBLE}"
+            app:layoutManager="GridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/layout_movie_item" />
+    </FrameLayout>
 </layout>
