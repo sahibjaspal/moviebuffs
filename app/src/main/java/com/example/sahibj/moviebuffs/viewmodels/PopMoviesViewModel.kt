@@ -18,7 +18,7 @@ import javax.inject.Inject
 class PopMoviesViewModel(app: Application): AndroidViewModel(app) {
 
     init {
-        (app as MovieBuffApplication).getNetComponent()?.inject(this)
+        (app as MovieBuffApplication).getNetComponent().inject(this)
     }
 
     @Inject

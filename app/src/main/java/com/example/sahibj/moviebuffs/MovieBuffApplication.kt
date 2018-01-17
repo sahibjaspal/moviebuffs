@@ -9,7 +9,7 @@ import com.example.sahibj.moviebuffs.dagger.*
  */
 class MovieBuffApplication : Application() {
 
-    private var appComponent: AppComponent? = null
+    private lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
@@ -21,5 +21,5 @@ class MovieBuffApplication : Application() {
                 .build()
     }
 
-    fun getNetComponent(): AppComponent? = appComponent
+    fun getNetComponent(): AppComponent = appComponent
 }

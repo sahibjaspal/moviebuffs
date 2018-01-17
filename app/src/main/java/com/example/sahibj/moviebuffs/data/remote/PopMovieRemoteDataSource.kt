@@ -16,7 +16,7 @@ import javax.inject.Inject
 class PopMovieRemoteDataSource(app: Application) :PopMoviesDataSource {
 
     init {
-        (app as MovieBuffApplication).getNetComponent()?.inject(this)
+        (app as MovieBuffApplication).getNetComponent().inject(this)
     }
 
     @Inject

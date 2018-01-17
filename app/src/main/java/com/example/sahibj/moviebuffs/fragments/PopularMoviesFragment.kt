@@ -32,7 +32,7 @@ class PopularMoviesFragment : LifecycleFragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.popular_movies_fragment, container,
                 false)
 
-        (activity.application as MovieBuffApplication).getNetComponent()?.inject(this)
+        (activity.application as MovieBuffApplication).getNetComponent().inject(this)
 
         binding.viewModel = ViewModelProviders.of(activity).get(PopMoviesViewModel::class.java)
 
