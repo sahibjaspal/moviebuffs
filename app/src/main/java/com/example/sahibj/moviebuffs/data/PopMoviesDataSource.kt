@@ -14,5 +14,5 @@ interface PopMoviesDataSource {
         fun onDataNotAvailable()
     }
 
-    fun getTasks(@NonNull callback: LoadPopMoviesCallback)
+    fun getMovies(@NonNull callback: LoadPopMoviesCallback)
 }

@@ -9,9 +9,9 @@ import com.example.sahibj.moviebuffs.models.Movie
  */
 class PopMoviesRepository(private val remoteDataSource: PopMovieRemoteDataSource) : PopMoviesDataSource {
 
-    override fun getTasks(@NonNull callback: PopMoviesDataSource.LoadPopMoviesCallback) {
+    override fun getMovies(@NonNull callback: PopMoviesDataSource.LoadPopMoviesCallback) {
 
-        remoteDataSource.getTasks(object : PopMoviesDataSource.LoadPopMoviesCallback {
+        remoteDataSource.getMovies(object : PopMoviesDataSource.LoadPopMoviesCallback {
 
             override fun onPopMoviesLoaded(popMovies: List<Movie>) {
                 callback.onPopMoviesLoaded(popMovies)

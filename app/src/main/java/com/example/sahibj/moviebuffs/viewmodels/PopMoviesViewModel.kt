@@ -33,7 +33,7 @@ class PopMoviesViewModel(app: Application): AndroidViewModel(app) {
     fun start() {
         if(movies.isEmpty()) {
             dataLoading.set(true)
-            popMoviesRepository.getTasks(object : PopMoviesDataSource.LoadPopMoviesCallback {
+            popMoviesRepository.getMovies(object : PopMoviesDataSource.LoadPopMoviesCallback {
                 override fun onPopMoviesLoaded(popMovies: List<Movie>) {
                     dataLoading.set(false)
                     movies.clear()

@@ -22,7 +22,7 @@ class PopMovieRemoteDataSource(app: Application) :PopMoviesDataSource {
     @Inject
     lateinit var movieService: MovieService
 
-    override fun getTasks(callback: PopMoviesDataSource.LoadPopMoviesCallback) {
+    override fun getMovies(callback: PopMoviesDataSource.LoadPopMoviesCallback) {
         movieService.getPopularMovies("popular")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
