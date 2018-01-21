@@ -23,10 +23,16 @@ class MovieDetailActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_movie_detail)
 
+        setSupportActionBar(findViewById(R.id.toolbar))
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         if(intent.hasExtra(EXTRA_MOVIE_ID)){
             val movieId = intent.getIntExtra(EXTRA_MOVIE_ID, -1)
 
             getMovieDetails(movieId)
+        }else{
+            throw IllegalStateException("Cannot start MovieDetail Activity without a movieId")
         }
     }
 

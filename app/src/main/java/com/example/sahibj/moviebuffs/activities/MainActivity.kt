@@ -2,7 +2,6 @@ package com.example.sahibj.moviebuffs.activities
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
@@ -10,6 +9,7 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.example.sahibj.moviebuffs.R
 import com.example.sahibj.moviebuffs.fragments.PopularMoviesFragment
+import com.example.sahibj.moviebuffs.utils.FragmentUtils
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +23,8 @@ class MainActivity : AppCompatActivity() {
 
         setupNavigationView()
 
-        addFragment(PopularMoviesFragment(), PopularMoviesFragment.TAG)
+        FragmentUtils.addFragment(supportFragmentManager,
+                PopularMoviesFragment(), PopularMoviesFragment.TAG)
     }
 
     private fun setupToolbar() {
@@ -48,7 +49,8 @@ class MainActivity : AppCompatActivity() {
                 { menuItem ->
                     when (menuItem.itemId) {
                         R.id.pop_movies_nav_menu_item -> {
-                            addFragment(PopularMoviesFragment(), PopularMoviesFragment.TAG)
+                            FragmentUtils.addFragment(supportFragmentManager,
+                                    PopularMoviesFragment(), PopularMoviesFragment.TAG)
                         }
                         else -> {
                         }
@@ -59,15 +61,6 @@ class MainActivity : AppCompatActivity() {
                     drawerLayout.closeDrawers()
                     true
                 })
-    }
-
-    private fun addFragment(fragmentToAdd: Fragment, tag: String?) {
-        val fragment: Fragment? = supportFragmentManager.findFragmentByTag(tag)
-
-        if (fragment == null) {
-            supportFragmentManager.beginTransaction()
-                    .add(R.id.contentFrame, fragmentToAdd, tag).commit()
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
