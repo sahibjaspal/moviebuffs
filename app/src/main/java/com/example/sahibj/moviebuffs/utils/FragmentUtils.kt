@@ -13,7 +13,7 @@ import com.example.sahibj.moviebuffs.fragments.PopularMoviesFragment
 object FragmentUtils {
 
     fun addFragment(supportFragmentManager: FragmentManager,
-                    fragmentToAdd: PopularMoviesFragment,
+                    fragmentToAdd: Fragment,
                     tag: String) {
         val fragment: Fragment? = supportFragmentManager.findFragmentByTag(tag)
 

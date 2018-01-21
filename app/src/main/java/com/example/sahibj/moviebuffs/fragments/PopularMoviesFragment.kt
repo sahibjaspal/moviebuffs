@@ -10,13 +10,11 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.sahibj.moviebuffs.MovieBuffApplication
 import com.example.sahibj.moviebuffs.R
 import com.example.sahibj.moviebuffs.activities.MovieDetailActivity
 import com.example.sahibj.moviebuffs.data.MovieAdapter
 import com.example.sahibj.moviebuffs.databinding.PopularMoviesFragmentBinding
 import com.example.sahibj.moviebuffs.misc.EXTRA_MOVIE_ID
-import com.example.sahibj.moviebuffs.models.Movie
 import com.example.sahibj.moviebuffs.viewmodels.PopMoviesViewModel
 
 /**
@@ -31,8 +29,6 @@ class PopularMoviesFragment : LifecycleFragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.popular_movies_fragment, container,
                 false)
-
-        (activity.application as MovieBuffApplication).getNetComponent().inject(this)
 
         binding.viewModel = ViewModelProviders.of(activity).get(PopMoviesViewModel::class.java)
 

@@ -15,6 +15,10 @@ import javax.inject.Inject
  */
 class PopMovieRemoteDataSource(app: Application) :PopMoviesDataSource {
 
+    companion object {
+        val TAG = PopMovieRemoteDataSource::class.java.name
+    }
+
     init {
         (app as MovieBuffApplication).getNetComponent().inject(this)
     }
@@ -31,6 +35,19 @@ class PopMovieRemoteDataSource(app: Application) :PopMoviesDataSource {
                     callback.onPopMoviesLoaded(popularMovieResponse.movies)
                 }, { t: Throwable ->
                     Log.e(PopularMoviesFragment.TAG, "Failed to retrieve popular movies", t)
+                    callback.onDataNotAvailable()
+                })
+    }
+
+    override fun getMovie(movieId:Int, callback: PopMoviesDataSource.LoadMovieCallback) {
+        movieService.getMovieDetails(movieId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ movieDetailResponse ->
+                    Log.v(TAG, "Retrieved movie data")
+                    callback.onMovieLoaded(movieDetailResponse)
+                }, {t:Throwable ->
+                    Log.e(TAG, "Failed to retrieve move data", t)
                     callback.onDataNotAvailable()
                 })
     }
