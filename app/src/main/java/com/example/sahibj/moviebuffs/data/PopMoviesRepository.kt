@@ -19,6 +19,7 @@ class PopMoviesRepository(private val remoteDataSource: PopMovieRemoteDataSource
             }
 
             override fun onDataNotAvailable() {
+
                 callback.onDataNotAvailable()
             }
         })
