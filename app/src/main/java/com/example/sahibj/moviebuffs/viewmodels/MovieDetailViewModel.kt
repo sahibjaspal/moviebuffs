@@ -25,17 +25,32 @@ class MovieDetailViewModel(app: Application) : AndroidViewModel(app) {
     @Inject
     lateinit var popMoviesRepository: PopMoviesRepository
 
-    val imageUrl :ObservableField<String> = ObservableField()
+    var cachedMovieDetails: MovieDetailsResponse? = null
+    val backdropImageUrl: ObservableField<String> = ObservableField()
+    val posterImageUrl: ObservableField<String> = ObservableField()
+    val title: ObservableField<String> = ObservableField()
+    val releaseDate: ObservableField<String> = ObservableField()
+    val tagline: ObservableField<String> = ObservableField()
+    val overview: ObservableField<String> = ObservableField()
 
     fun start(movieId: Int) {
-        popMoviesRepository.getMovie(movieId, object : PopMoviesDataSource.LoadMovieCallback {
-            override fun onMovieLoaded(movieDetailResponse: MovieDetailsResponse) {
-                imageUrl.set("http://image.tmdb.org/t/p/w780" + movieDetailResponse.backdropPath)
-            }
+        if (cachedMovieDetails == null) {
 
-            override fun onDataNotAvailable() {
+            popMoviesRepository.getMovie(movieId, object : PopMoviesDataSource.LoadMovieCallback {
+                override fun onMovieLoaded(movieDetailResponse: MovieDetailsResponse) {
+                    cachedMovieDetails = movieDetailResponse
+                    backdropImageUrl.set("http://image.tmdb.org/t/p/w780" + movieDetailResponse.backdropPath)
+                    posterImageUrl.set("http://image.tmdb.org/t/p/w780" + movieDetailResponse.posterPath)
+                    title.set(movieDetailResponse.title)
+                    releaseDate.set(movieDetailResponse.releaseDate)
+                    tagline.set(movieDetailResponse.tagline)
+                    overview.set(movieDetailResponse.overview)
+                }
 
-            }
-        })
+                override fun onDataNotAvailable() {
+
+                }
+            })
+        }
     }
 }
