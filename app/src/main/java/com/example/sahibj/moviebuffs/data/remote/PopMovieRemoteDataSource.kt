@@ -13,7 +13,7 @@ import javax.inject.Inject
 /**
  * Created by sahibjaspal on 1/15/18.
  */
-class PopMovieRemoteDataSource(app: Application) :PopMoviesDataSource {
+class PopMovieRemoteDataSource(app: Application) : PopMoviesDataSource {
 
     companion object {
         val TAG = PopMovieRemoteDataSource::class.java.name
@@ -39,15 +39,28 @@ class PopMovieRemoteDataSource(app: Application) :PopMoviesDataSource {
                 })
     }
 
-    override fun getMovie(movieId:Int, callback: PopMoviesDataSource.LoadMovieCallback) {
+    override fun getMovie(movieId: Int, callback: PopMoviesDataSource.LoadMovieCallback) {
         movieService.getMovieDetails(movieId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ movieDetailResponse ->
-                    Log.v(TAG, "Retrieved movie data")
+                    Log.v(TAG, "Retrieved movie details")
                     callback.onMovieLoaded(movieDetailResponse)
-                }, {t:Throwable ->
-                    Log.e(TAG, "Failed to retrieve move data", t)
+                }, { t: Throwable ->
+                    Log.e(TAG, "Failed to retrieve movie details", t)
+                    callback.onDataNotAvailable()
+                })
+    }
+
+    override fun getSimilarMovies(movieId: Int, callback: PopMoviesDataSource.SimilarMovieCallback) {
+        movieService.getSimilarMovies(movieId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({  similarMovieResponse ->
+                    Log.v(TAG, "Retrieved similar movie data")
+                    callback.onSimilarMoviesLoaded(similarMovieResponse)
+                }, { t: Throwable ->
+                    Log.e(TAG, "Failed to retrieve similar movie data", t)
                     callback.onDataNotAvailable()
                 })
     }

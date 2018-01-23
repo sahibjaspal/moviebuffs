@@ -12,7 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.sahibj.moviebuffs.R
 import com.example.sahibj.moviebuffs.activities.MovieDetailActivity
-import com.example.sahibj.moviebuffs.data.MovieAdapter
+import com.example.sahibj.moviebuffs.data.adapters.MovieAdapter
 import com.example.sahibj.moviebuffs.databinding.PopularMoviesFragmentBinding
 import com.example.sahibj.moviebuffs.misc.EXTRA_MOVIE_ID
 import com.example.sahibj.moviebuffs.viewmodels.PopMoviesViewModel

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="movie"
+            type="com.example.sahibj.moviebuffs.models.Movie" />
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/similar_movie_poster"
+            android:layout_width="150dp"
+            android:background="@android:color/holo_blue_bright"
+            android:layout_height="180dp" />
+
+        <TextView
+            android:id="@+id/similar_movie_name"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/similar_movie_poster"
+            app:layout_constraintEnd_toEndOf="@+id/similar_movie_poster"
+            tools:text="Movie name" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

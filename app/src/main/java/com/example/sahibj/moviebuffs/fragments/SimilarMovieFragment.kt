@@ -5,35 +5,36 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.sahibj.moviebuffs.R
-import com.example.sahibj.moviebuffs.databinding.MovieDetailFragmentBinding
+import com.example.sahibj.moviebuffs.data.adapters.SimilarMoviesAdapter
+import com.example.sahibj.moviebuffs.databinding.SimilarMovieFragmentBinding
 import com.example.sahibj.moviebuffs.misc.EXTRA_MOVIE_ID
-import com.example.sahibj.moviebuffs.utils.FragmentUtils
-import com.example.sahibj.moviebuffs.viewmodels.MovieDetailViewModel
+import com.example.sahibj.moviebuffs.viewmodels.SimilarMoviesViewModel
 
 /**
- * Created by sahibjaspal on 1/20/18.
+ * Created by sahibjaspal on 1/22/18.
  */
-class MovieDetailFragment : LifecycleFragment() {
+class SimilarMovieFragment : LifecycleFragment() {
 
-    lateinit var binding: MovieDetailFragmentBinding
+    lateinit var binding: SimilarMovieFragmentBinding
     var movieId: Int = 0
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.movie_detail_fragment, container,
-                false)
-
-        binding.viewModel = ViewModelProviders.of(activity).get(MovieDetailViewModel::class.java)
+        binding = DataBindingUtil.inflate(inflater, R.layout.similar_movie_fragment,
+                container, false)
 
         movieId = arguments.getInt(EXTRA_MOVIE_ID)
 
-        FragmentUtils.addFragment(activity.supportFragmentManager,
-                SimilarMovieFragment.getInstance(movieId), SimilarMovieFragment.TAG)
+        binding.viewModel = ViewModelProviders.of(activity).get(SimilarMoviesViewModel::class.java)
+
+        binding.similarMovies.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        binding.similarMovies.adapter = SimilarMoviesAdapter(binding.viewModel!!)
 
         return binding.root
     }
@@ -43,7 +44,7 @@ class MovieDetailFragment : LifecycleFragment() {
     }
 
     companion object {
-        val TAG = MovieDetailFragment::class.java.name
+        val TAG = SimilarMovieFragment::class.java.name
 
         fun getInstance(movieId: Int): Fragment {
             val movieDetailFragment = MovieDetailFragment()

@@ -1,4 +1,4 @@
-package com.example.sahibj.moviebuffs.data
+package com.example.sahibj.moviebuffs.data.adapters
 
 import android.databinding.DataBindingUtil
 import android.databinding.ObservableList
