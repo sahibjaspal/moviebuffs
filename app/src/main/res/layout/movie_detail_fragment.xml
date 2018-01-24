@@ -111,12 +111,25 @@
                 android:id="@+id/similar_movie_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/overview"
+                tools:background="@color/colorAccent"
+                tools:layout_height="200dp"
+                tools:layout_width="200dp" />
+
+            <FrameLayout
+                android:id="@+id/recommended_movie_container"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/similar_movie_container"
                 tools:layout_height="200dp"
                 tools:layout_width="200dp" />
 
