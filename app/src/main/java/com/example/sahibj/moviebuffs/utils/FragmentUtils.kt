@@ -17,7 +17,7 @@ object FragmentUtils {
 
         if (fragment == null) {
             supportFragmentManager.beginTransaction()
-                    .add(R.id.contentFrame, fragmentToAdd, tag).commitAllowingStateLoss()
+                    .add(R.id.contentFrame, fragmentToAdd, tag).commit()
         }
     }
 }

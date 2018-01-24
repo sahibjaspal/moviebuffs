@@ -17,7 +17,7 @@ import com.example.sahibj.moviebuffs.viewmodels.MovieDetailViewModel
 /**
  * Created by sahibjaspal on 1/20/18.
  */
-class MovieDetailFragment : LifecycleFragment() {
+class MovieDetailFragment : Fragment() {
 
     lateinit var binding: MovieDetailFragmentBinding
     var movieId: Int = 0

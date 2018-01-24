@@ -33,7 +33,8 @@ class SimilarMovieFragment : LifecycleFragment() {
 
         binding.viewModel = ViewModelProviders.of(activity).get(SimilarMoviesViewModel::class.java)
 
-        binding.similarMovies.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        binding.similarMovies.layoutManager = LinearLayoutManager(context,
+                LinearLayoutManager.HORIZONTAL, false)
         binding.similarMovies.adapter = SimilarMoviesAdapter(binding.viewModel!!)
 
         return binding.root
@@ -47,11 +48,11 @@ class SimilarMovieFragment : LifecycleFragment() {
         val TAG = SimilarMovieFragment::class.java.name
 
         fun getInstance(movieId: Int): Fragment {
-            val movieDetailFragment = MovieDetailFragment()
+            val similarMovieFragment = SimilarMovieFragment()
             val bundle = Bundle()
             bundle.putInt(EXTRA_MOVIE_ID, movieId)
-            movieDetailFragment.arguments = bundle
-            return movieDetailFragment
+            similarMovieFragment.arguments = bundle
+            return similarMovieFragment
         }
     }
 }

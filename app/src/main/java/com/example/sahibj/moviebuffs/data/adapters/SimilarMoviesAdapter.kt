@@ -31,7 +31,6 @@ class SimilarMoviesAdapter(var viewModel:SimilarMoviesViewModel)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         binding.movie = similarMovies[position]
         val movie = similarMovies[position]
-        binding.similarMovieName.text = movie.title
 
         Glide.with(holder.movieView.context)
                 .load("http://image.tmdb.org/t/p/w780" + movie.posterPath)

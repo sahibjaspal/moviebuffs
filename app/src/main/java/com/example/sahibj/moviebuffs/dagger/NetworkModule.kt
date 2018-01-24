@@ -48,8 +48,8 @@ class NetworkModule(val baseUrl: String) {
     @Singleton
     fun provideRetrofit(application: Application, okHttpClient: OkHttpClient): Retrofit {
 
-        val okHttpClient = okHttpClient
-                .newBuilder().addInterceptor(MovieServiceInterceptor(application))
+        val okHttpClient = okHttpClient.newBuilder()
+                .addInterceptor(MovieServiceInterceptor(application))
                 .build()
 
         val retrofit = Retrofit.Builder()
