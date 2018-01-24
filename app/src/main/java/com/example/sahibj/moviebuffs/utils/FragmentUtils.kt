@@ -12,12 +12,12 @@ object FragmentUtils {
 
     fun addFragment(supportFragmentManager: FragmentManager,
                     fragmentToAdd: Fragment,
-                    tag: String) {
+                    tag: String, containerId: Int) {
         val fragment: Fragment? = supportFragmentManager.findFragmentByTag(tag)
 
         if (fragment == null) {
             supportFragmentManager.beginTransaction()
-                    .add(R.id.contentFrame, fragmentToAdd, tag).commit()
+                    .add(containerId, fragmentToAdd, tag).commit()
         }
     }
 }

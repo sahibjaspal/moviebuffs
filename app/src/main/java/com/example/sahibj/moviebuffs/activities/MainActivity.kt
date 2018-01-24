@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         setupNavigationView()
 
         FragmentUtils.addFragment(supportFragmentManager,
-                PopularMoviesFragment(), PopularMoviesFragment.TAG)
+                PopularMoviesFragment(), PopularMoviesFragment.TAG, R.id.contentFrame)
     }
 
     private fun setupToolbar() {
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                     when (menuItem.itemId) {
                         R.id.pop_movies_nav_menu_item -> {
                             FragmentUtils.addFragment(supportFragmentManager,
-                                    PopularMoviesFragment(), PopularMoviesFragment.TAG)
+                                    PopularMoviesFragment(), PopularMoviesFragment.TAG, R.id.similar_movie_container)
                         }
                         else -> {
                         }

@@ -1,6 +1,5 @@
 package com.example.sahibj.moviebuffs.fragments
 
-import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -33,7 +32,8 @@ class MovieDetailFragment : Fragment() {
         movieId = arguments.getInt(EXTRA_MOVIE_ID)
 
         FragmentUtils.addFragment(activity.supportFragmentManager,
-                SimilarMovieFragment.getInstance(movieId), SimilarMovieFragment.TAG)
+                SimilarMovieFragment.getInstance(movieId), SimilarMovieFragment.TAG,
+                R.id.similar_movie_container)
 
         return binding.root
     }

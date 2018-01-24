@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity
 import com.example.sahibj.moviebuffs.MovieBuffApplication
 import com.example.sahibj.moviebuffs.R
 import com.example.sahibj.moviebuffs.fragments.MovieDetailFragment
-import com.example.sahibj.moviebuffs.fragments.SimilarMovieFragment
 import com.example.sahibj.moviebuffs.misc.EXTRA_MOVIE_ID
 import com.example.sahibj.moviebuffs.utils.FragmentUtils
 
@@ -26,7 +25,7 @@ class MovieDetailActivity : AppCompatActivity() {
             val movieId = intent.getIntExtra(EXTRA_MOVIE_ID, -1)
 
             FragmentUtils.addFragment(supportFragmentManager,
-                    MovieDetailFragment.getInstance(movieId), MovieDetailFragment.TAG)
+                    MovieDetailFragment.getInstance(movieId), MovieDetailFragment.TAG, R.id.contentFrame)
         }else{
             throw IllegalStateException("Cannot start MovieDetail Activity without a movieId")
         }
