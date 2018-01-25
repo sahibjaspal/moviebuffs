@@ -8,22 +8,22 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.sahibj.moviebuffs.R
-import com.example.sahibj.moviebuffs.databinding.SimilarMovieItemBinding
+import com.example.sahibj.moviebuffs.databinding.AltMovieItemBinding
 import com.example.sahibj.moviebuffs.models.Movie
-import com.example.sahibj.moviebuffs.viewmodels.SimilarMoviesViewModel
+import com.example.sahibj.moviebuffs.viewmodels.HorizontalRVViewModel
 
 /**
  * Created by sahibjaspal on 1/22/18.
  */
-class SimilarMoviesAdapter(var viewModel:SimilarMoviesViewModel)
-    : RecyclerView.Adapter<SimilarMoviesAdapter.ViewHolder>() {
+class HorizontalRVMoviesAdapter(var viewModel: HorizontalRVViewModel)
+    : RecyclerView.Adapter<HorizontalRVMoviesAdapter.ViewHolder>() {
 
-    private lateinit var binding: SimilarMovieItemBinding
-    val similarMovies: ObservableList<Movie> = viewModel.similarMovies
+    private lateinit var binding: AltMovieItemBinding
+    val similarMovies: ObservableList<Movie> = viewModel.altMovies
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        binding = DataBindingUtil.inflate<SimilarMovieItemBinding>(
-                LayoutInflater.from(parent.context), R.layout.similar_movie_item, parent, false)
+        binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context),
+                R.layout.alt_movie_item, parent, false)
 
         return ViewHolder(binding)
     }
@@ -42,8 +42,8 @@ class SimilarMoviesAdapter(var viewModel:SimilarMoviesViewModel)
         return similarMovies.size
     }
 
-    inner class ViewHolder(binding: SimilarMovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(binding: AltMovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        internal var movieView: ImageView = binding.similarMoviePoster
+        internal var movieView: ImageView = binding.altMoviePoster
     }
 }

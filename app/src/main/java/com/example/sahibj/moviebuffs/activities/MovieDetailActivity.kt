@@ -27,7 +27,7 @@ class MovieDetailActivity : AppCompatActivity() {
             FragmentUtils.addFragment(supportFragmentManager,
                     MovieDetailFragment.getInstance(movieId), MovieDetailFragment.TAG, R.id.contentFrame)
         }else{
-            throw IllegalStateException("Cannot start MovieDetail Activity without a movieId")
+            throw IllegalStateException("Cannot loadAltMovies MovieDetail Activity without a movieId")
         }
     }
 

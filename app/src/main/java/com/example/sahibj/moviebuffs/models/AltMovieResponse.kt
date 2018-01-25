@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * Created by sahibjaspal on 1/22/18.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-class SimilarMovieResponse {
+class AltMovieResponse {
 
     var page:Int? = null
     @JsonProperty("results")
-    var similarMovies :List<Movie> = ArrayList()
+    var altMovies:List<Movie> = ArrayList()
 }

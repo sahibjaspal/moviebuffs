@@ -4,7 +4,7 @@ import android.support.annotation.NonNull
 import com.example.sahibj.moviebuffs.data.remote.PopMovieRemoteDataSource
 import com.example.sahibj.moviebuffs.models.Movie
 import com.example.sahibj.moviebuffs.models.MovieDetailsResponse
-import com.example.sahibj.moviebuffs.models.SimilarMovieResponse
+import com.example.sahibj.moviebuffs.models.AltMovieResponse
 
 /**
  * Created by sahibjaspal on 1/15/18.
@@ -38,12 +38,13 @@ class PopMoviesRepository(private val remoteDataSource: PopMovieRemoteDataSource
         })
     }
 
-    override fun getSimilarMovies(movieId: Int, callback: PopMoviesDataSource.SimilarMovieCallback) {
+    override fun getAltMovies(movieId: Int, type: String,
+                              callback: PopMoviesDataSource.AltMoviesCallback) {
 
-        remoteDataSource.getSimilarMovies(movieId, object : PopMoviesDataSource.SimilarMovieCallback {
+        remoteDataSource.getAltMovies(movieId, type, object : PopMoviesDataSource.AltMoviesCallback {
 
-            override fun onSimilarMoviesLoaded(similarMovieResponse: SimilarMovieResponse) {
-                callback.onSimilarMoviesLoaded(similarMovieResponse)
+            override fun altMoviesLoaded(altMovieResponse: AltMovieResponse) {
+                callback.altMoviesLoaded(altMovieResponse)
             }
 
             override fun onDataNotAvailable() {

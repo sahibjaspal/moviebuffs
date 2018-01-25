@@ -40,7 +40,7 @@
             <ImageView
                 android:id="@+id/movie_backdrop"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="250dp"
                 android:src="@{viewModel.backdropImageUrl}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -107,29 +107,54 @@
                 app:layout_constraintTop_toBottomOf="@+id/movie_poster"
                 tools:text="This is the overview" />
 
+            <TextView
+                android:id="@+id/similar_movie_label"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Similar Movies"
+                android:textColor="@android:color/white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/overview" />
+
             <FrameLayout
                 android:id="@+id/similar_movie_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/overview"
+                app:layout_constraintTop_toBottomOf="@+id/similar_movie_label"
                 tools:background="@color/colorAccent"
                 tools:layout_height="200dp"
                 tools:layout_width="200dp" />
 
+            <TextView
+                android:id="@+id/recommendations_movie_label"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Recommended Movies"
+                android:textColor="@android:color/white"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/similar_movie_container" />
+
             <FrameLayout
-                android:id="@+id/recommended_movie_container"
+                android:id="@+id/recommendations_movie_container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/similar_movie_container"
+                app:layout_constraintTop_toBottomOf="@+id/recommendations_movie_label"
+                tools:background="@color/colorPrimary"
                 tools:layout_height="200dp"
                 tools:layout_width="200dp" />
 

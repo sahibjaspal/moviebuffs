@@ -3,7 +3,7 @@ package com.example.sahibj.moviebuffs.data
 import android.support.annotation.NonNull
 import com.example.sahibj.moviebuffs.models.Movie
 import com.example.sahibj.moviebuffs.models.MovieDetailsResponse
-import com.example.sahibj.moviebuffs.models.SimilarMovieResponse
+import com.example.sahibj.moviebuffs.models.AltMovieResponse
 
 /**
  * Created by sahibjaspal on 1/15/18.
@@ -21,14 +21,15 @@ interface PopMoviesDataSource {
         fun onDataNotAvailable()
     }
 
-    interface SimilarMovieCallback{
-        fun onSimilarMoviesLoaded(similarMovieResponse: SimilarMovieResponse)
+    interface AltMoviesCallback {
+        fun altMoviesLoaded(altMovieResponse: AltMovieResponse)
         fun onDataNotAvailable()
     }
 
     fun getMovies(@NonNull callback: LoadPopMoviesCallback)
 
-    fun getMovie(@NonNull movieId:Int, @NonNull callback: LoadMovieCallback)
+    fun getMovie(@NonNull movieId: Int, @NonNull callback: LoadMovieCallback)
 
-    fun getSimilarMovies(@NonNull movieId:Int, @NonNull callback: SimilarMovieCallback)
+    fun getAltMovies(@NonNull movieId: Int, @NonNull path: String,
+                     @NonNull callback: AltMoviesCallback)
 }

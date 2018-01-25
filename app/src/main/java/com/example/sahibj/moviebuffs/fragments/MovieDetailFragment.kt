@@ -32,8 +32,14 @@ class MovieDetailFragment : Fragment() {
         movieId = arguments.getInt(EXTRA_MOVIE_ID)
 
         FragmentUtils.addFragment(activity.supportFragmentManager,
-                SimilarMovieFragment.getInstance(movieId), SimilarMovieFragment.TAG,
+                HorizontalRVFragment.getInstance(movieId, "similar"),
+                HorizontalRVFragment.TAG + "similar",
                 R.id.similar_movie_container)
+
+        FragmentUtils.addFragment(activity.supportFragmentManager,
+                HorizontalRVFragment.getInstance(movieId, "recommendations"),
+                HorizontalRVFragment.TAG + "recommendations",
+                R.id.recommendations_movie_container)
 
         return binding.root
     }

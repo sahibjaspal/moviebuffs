@@ -9,13 +9,13 @@ import com.example.sahibj.moviebuffs.MovieBuffApplication
 import com.example.sahibj.moviebuffs.data.PopMoviesDataSource
 import com.example.sahibj.moviebuffs.data.PopMoviesRepository
 import com.example.sahibj.moviebuffs.models.Movie
-import com.example.sahibj.moviebuffs.models.SimilarMovieResponse
+import com.example.sahibj.moviebuffs.models.AltMovieResponse
 import javax.inject.Inject
 
 /**
  * Created by sahibjaspal on 1/22/18.
  */
-class SimilarMoviesViewModel(app: Application) : AndroidViewModel(app) {
+class HorizontalRVViewModel(app: Application) : AndroidViewModel(app) {
 
     init {
         (app as MovieBuffApplication).getNetComponent().inject(this)
@@ -24,17 +24,17 @@ class SimilarMoviesViewModel(app: Application) : AndroidViewModel(app) {
     @Inject
     lateinit var popMoviesRepository: PopMoviesRepository
 
-    val similarMovies: ObservableList<Movie> = ObservableArrayList()
+    val altMovies: ObservableList<Movie> = ObservableArrayList()
     val dataLoading = ObservableBoolean(false)
 
-    fun start(movieId: Int) {
-        if (similarMovies.isEmpty()) {
+    fun loadAltMovies(movieId: Int, type: String) {
+        if (altMovies.isEmpty()) {
             dataLoading.set(true)
-            popMoviesRepository.getSimilarMovies(movieId, object : PopMoviesDataSource.SimilarMovieCallback {
-                override fun onSimilarMoviesLoaded(similarMovieResponse: SimilarMovieResponse) {
+            popMoviesRepository.getAltMovies(movieId, type, object : PopMoviesDataSource.AltMoviesCallback {
+                override fun altMoviesLoaded(altMovieResponse: AltMovieResponse) {
                     dataLoading.set(false)
-                    similarMovies.clear()
-                    similarMovies.addAll(similarMovieResponse.similarMovies)
+                    altMovies.clear()
+                    altMovies.addAll(altMovieResponse.altMovies)
                 }
 
                 override fun onDataNotAvailable() {
