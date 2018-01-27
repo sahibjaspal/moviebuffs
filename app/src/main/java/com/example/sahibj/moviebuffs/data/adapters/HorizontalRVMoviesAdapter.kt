@@ -35,7 +35,6 @@ class HorizontalRVMoviesAdapter(var viewModel: HorizontalRVViewModel)
         Glide.with(holder.movieView.context)
                 .load("http://image.tmdb.org/t/p/w780" + movie.posterPath)
                 .into(holder.movieView)
-
     }
 
     override fun getItemCount(): Int {

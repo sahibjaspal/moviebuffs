@@ -41,6 +41,9 @@ class MovieDetailFragment : Fragment() {
                 HorizontalRVFragment.TAG + "recommendations",
                 R.id.recommendations_movie_container)
 
+        FragmentUtils.addFragment(activity.supportFragmentManager,
+                CastFragment.getInstance(movieId), CastFragment.TAG, R.id.movie_cast_container)
+
         return binding.root
     }
 

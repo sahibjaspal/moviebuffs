@@ -3,6 +3,7 @@ package com.example.sahibj.moviebuffs.viewmodels
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.databinding.ObservableArrayList
+import android.databinding.ObservableBoolean
 import android.databinding.ObservableList
 import com.example.sahibj.moviebuffs.MovieBuffApplication
 import com.example.sahibj.moviebuffs.data.PopMoviesDataSource
@@ -25,12 +26,15 @@ class MovieCastViewModel(var app: Application) : AndroidViewModel(app) {
 
     @Inject
     lateinit var popMoviesRepository: PopMoviesRepository
-    val castList:ObservableList<MovieCastResponse.Cast> = ObservableArrayList()
+    val showCast: ObservableBoolean = ObservableBoolean(false)
 
+    val castList: ObservableList<MovieCastResponse.Cast> = ObservableArrayList()
 
     fun start(movieId: Int) {
-        popMoviesRepository.getMovieCast(movieId, object: PopMoviesDataSource.LoadMovieCastCallback{
+        popMoviesRepository.getMovieCast(movieId, object : PopMoviesDataSource.LoadMovieCastCallback {
             override fun movieCastLoaded(movieCastResponse: MovieCastResponse) {
+                showCast.set(true)
+                castList.clear()
                 castList.addAll(movieCastResponse.castList)
             }
 
