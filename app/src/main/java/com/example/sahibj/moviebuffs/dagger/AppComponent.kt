@@ -4,6 +4,7 @@ import com.example.sahibj.moviebuffs.activities.MovieDetailActivity
 import com.example.sahibj.moviebuffs.data.remote.PopMovieRemoteDataSource
 import com.example.sahibj.moviebuffs.fragments.PopularMoviesFragment
 import com.example.sahibj.moviebuffs.viewmodels.HorizontalRVViewModel
+import com.example.sahibj.moviebuffs.viewmodels.MovieCastViewModel
 import com.example.sahibj.moviebuffs.viewmodels.MovieDetailViewModel
 import com.example.sahibj.moviebuffs.viewmodels.PopMoviesViewModel
 import dagger.Component
@@ -22,4 +23,5 @@ interface AppComponent {
     fun inject(popMovieRemoteDataSource: PopMovieRemoteDataSource)
     fun inject(movieDetailViewModel: MovieDetailViewModel)
     fun inject(horizontalRVViewModel: HorizontalRVViewModel)
+    fun inject(movieCastViewModel: MovieCastViewModel)
 }

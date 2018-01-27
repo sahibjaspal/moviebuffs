@@ -52,16 +52,29 @@ class PopMovieRemoteDataSource(app: Application) : PopMoviesDataSource {
                 })
     }
 
-    override fun getAltMovies(movieId: Int, type:String,
-                               callback: PopMoviesDataSource.AltMoviesCallback) {
+    override fun getAltMovies(movieId: Int, type: String,
+                              callback: PopMoviesDataSource.AltMoviesCallback) {
         movieService.getAltMovies(movieId, type)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({  similarMovieResponse ->
-                    Log.v(TAG, "Retrieved similar movie data")
+                .subscribe({ similarMovieResponse ->
+                    Log.v(TAG, "Retrieved alt movie data for type: " + type)
                     callback.altMoviesLoaded(similarMovieResponse)
                 }, { t: Throwable ->
-                    Log.e(TAG, "Failed to retrieve similar movie data", t)
+                    Log.e(TAG, "Failed to retrieve alt movie data for type: " + type, t)
+                    callback.onDataNotAvailable()
+                })
+    }
+
+    override fun getMovieCast(movieId: Int, callback: PopMoviesDataSource.LoadMovieCastCallback) {
+        movieService.getMovieCast(movieId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ movieCastResponse ->
+                    Log.v(TAG, "Retrieved movie cast data")
+                    callback.movieCastLoaded(movieCastResponse)
+                }, { t ->
+                    Log.e(TAG, "Failed to retrieve movie cast data", t)
                     callback.onDataNotAvailable()
                 })
     }
