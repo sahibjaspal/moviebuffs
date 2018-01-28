@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import com.example.sahibj.moviebuffs.R
-import com.example.sahibj.moviebuffs.fragments.PopularMoviesFragment
+import com.example.sahibj.moviebuffs.fragments.MoviesMainFragment
 import com.example.sahibj.moviebuffs.utils.FragmentUtils
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         setupNavigationView()
 
         FragmentUtils.addFragment(supportFragmentManager,
-                PopularMoviesFragment(), PopularMoviesFragment.TAG, R.id.contentFrame)
+                MoviesMainFragment(), MoviesMainFragment.TAG, R.id.contentFrame)
     }
 
     private fun setupToolbar() {
@@ -48,9 +48,9 @@ class MainActivity : AppCompatActivity() {
         navigationView.setNavigationItemSelectedListener(
                 { menuItem ->
                     when (menuItem.itemId) {
-                        R.id.pop_movies_nav_menu_item -> {
+                        R.id.movies_nav_menu_item -> {
                             FragmentUtils.addFragment(supportFragmentManager,
-                                    PopularMoviesFragment(), PopularMoviesFragment.TAG, R.id.similar_movie_container)
+                                    MoviesMainFragment(), MoviesMainFragment.TAG, R.id.contentFrame)
                         }
                         else -> {
                         }

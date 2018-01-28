@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/pop_movies_nav_menu_item"
+        android:id="@+id/movies_nav_menu_item"
         android:icon="@drawable/ic_movie_black_24dp"
-        android:title="Popular Movies" />
+        android:title="Movies" />
 </menu>
