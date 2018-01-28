@@ -16,7 +16,7 @@ import com.example.sahibj.moviebuffs.viewmodels.PopMoviesViewModel
 /**
  * Created by sahibj on 9/24/17.
  */
-class MovieAdapter(private val viewModel: PopMoviesViewModel)
+class MovieAdapter(private val viewModel: PopMoviesViewModel, private val fragmentType: String)
     : RecyclerView.Adapter<MovieAdapter.ViewHolder>(), MovieItemUserActionsListener {
 
     private lateinit var binding: LayoutMovieItemBinding
