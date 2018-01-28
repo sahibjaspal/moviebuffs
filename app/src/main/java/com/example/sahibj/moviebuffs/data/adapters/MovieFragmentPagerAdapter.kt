@@ -21,7 +21,7 @@ class MovieFragmentPagerAdapter(fragmentManager: FragmentManager)
     }
 
     override fun getCount(): Int {
-        return tabTiles.size;
+        return tabTiles.size
     }
 
     override fun getPageTitle(position: Int): CharSequence {
