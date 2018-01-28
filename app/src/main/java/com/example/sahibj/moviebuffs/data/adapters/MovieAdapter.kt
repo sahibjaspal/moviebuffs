@@ -9,6 +9,7 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.sahibj.moviebuffs.R
 import com.example.sahibj.moviebuffs.databinding.LayoutMovieItemBinding
+import com.example.sahibj.moviebuffs.misc.IMAGE_BASE_URL_POSTER
 import com.example.sahibj.moviebuffs.models.Movie
 import com.example.sahibj.moviebuffs.useractions.MovieItemUserActionsListener
 import com.example.sahibj.moviebuffs.viewmodels.PopMoviesViewModel
@@ -36,7 +37,7 @@ class MovieAdapter(private val viewModel: PopMoviesViewModel, private val fragme
         binding.movie = movies[position]
         val movie = movies[position]
         Glide.with(holder.movieView.context)
-                .load("http://image.tmdb.org/t/p/w780" + movie.posterPath)
+                .load(IMAGE_BASE_URL_POSTER + movie.posterPath)
                 .into(holder.movieView)
     }
 
@@ -47,7 +48,7 @@ class MovieAdapter(private val viewModel: PopMoviesViewModel, private val fragme
         internal var movieView: ImageView = binding.movieImage
     }
 
-    override fun onMovieItemClicked(movie:Movie) {
+    override fun onMovieItemClicked(movie: Movie) {
         viewModel.getOpenMovieEvent().value = movie.id
     }
 }

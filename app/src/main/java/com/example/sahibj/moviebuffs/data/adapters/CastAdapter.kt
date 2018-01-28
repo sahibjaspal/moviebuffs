@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.sahibj.moviebuffs.R
 import com.example.sahibj.moviebuffs.databinding.CastItemBinding
+import com.example.sahibj.moviebuffs.misc.IMAGE_BASE_URL_POSTER
 import com.example.sahibj.moviebuffs.models.MovieCastResponse
 import com.example.sahibj.moviebuffs.viewmodels.MovieCastViewModel
 
@@ -31,7 +32,7 @@ class CastAdapter(viewModel: MovieCastViewModel) : RecyclerView.Adapter<CastAdap
         val castItem = castList[position]
         holder.castPersonName.text = castItem.name
         Glide.with(holder.castPersonImage.context)
-                .load("http://image.tmdb.org/t/p/w780" + castItem.personImage)
+                .load(IMAGE_BASE_URL_POSTER + castItem.personImage)
                 .into(holder.castPersonImage)
     }
 

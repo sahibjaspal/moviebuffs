@@ -32,7 +32,7 @@ interface PopMoviesDataSource {
         fun onDataNotAvailable()
     }
 
-    fun getMovies(@NonNull callback: LoadPopMoviesCallback)
+    fun getMovies(@NonNull type: String, @NonNull callback: LoadPopMoviesCallback)
 
     fun getMovie(@NonNull movieId: Int, @NonNull callback: LoadMovieCallback)
 

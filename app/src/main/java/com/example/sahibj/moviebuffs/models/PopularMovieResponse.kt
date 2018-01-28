@@ -1,10 +1,12 @@
 package com.example.sahibj.moviebuffs.models
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
  * Created by sahibj on 9/24/17.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 class PopularMovieResponse {
 
     @JsonProperty("page")

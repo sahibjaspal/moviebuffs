@@ -13,8 +13,8 @@ import rx.Observable
  */
 interface MovieService {
 
-    @GET("movie/{sort}")
-    fun getPopularMovies(@Path("sort") sort: String): Observable<PopularMovieResponse>
+    @GET("movie/{type}")
+    fun getPopularMovies(@Path("type") type: String): Observable<PopularMovieResponse>
 
     @GET("movie/{movie_id}")
     fun getMovieDetails(@Path("movie_id") movieId: Int): Observable<MovieDetailsResponse>

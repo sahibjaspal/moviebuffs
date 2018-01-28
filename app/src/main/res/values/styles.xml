@@ -14,6 +14,7 @@
         <item name="tabIndicatorColor">?attr/colorAccent</item>
         <item name="tabIndicatorHeight">4dp</item>
         <item name="tabBackground">?attr/colorPrimary</item>
+        <item name="tabMode">fixed</item>
         <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
         <item name="tabSelectedTextColor">@android:color/white</item>
     </style>

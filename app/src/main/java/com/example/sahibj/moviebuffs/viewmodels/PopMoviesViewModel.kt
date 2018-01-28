@@ -15,7 +15,7 @@ import javax.inject.Inject
 /**
  * Created by sahibj on 10/1/17.
  */
-class PopMoviesViewModel(app: Application): AndroidViewModel(app) {
+open class PopMoviesViewModel(app: Application) : AndroidViewModel(app) {
 
     init {
         (app as MovieBuffApplication).getNetComponent().inject(this)
@@ -30,10 +30,11 @@ class PopMoviesViewModel(app: Application): AndroidViewModel(app) {
 
     fun getOpenMovieEvent(): SingleLiveEvent<Int> = openMovieEvent
 
-    fun start() {
-        if(movies.isEmpty()) {
+    fun start(type: String) {
+        val type = type.toLowerCase().replace(" ", "_")
+        if (movies.isEmpty()) {
             dataLoading.set(true)
-            popMoviesRepository.getMovies(object : PopMoviesDataSource.LoadPopMoviesCallback {
+            popMoviesRepository.getMovies(type, object : PopMoviesDataSource.LoadPopMoviesCallback {
                 override fun onPopMoviesLoaded(popMovies: List<Movie>) {
                     dataLoading.set(false)
                     movies.clear()

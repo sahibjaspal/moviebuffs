@@ -13,7 +13,7 @@ class MovieFragmentPagerAdapter(fragmentManager: FragmentManager)
     : FragmentPagerAdapter(fragmentManager) {
 
     private val tabTiles: ArrayList<String> =
-            ArrayList(Arrays.asList("Now Playing", "Upcoming", "Latest", "Popular", "Top Rated"))
+            ArrayList(Arrays.asList("Now Playing", "Upcoming", "Popular", "Top Rated"))
 
 
     override fun getItem(position: Int): Fragment {

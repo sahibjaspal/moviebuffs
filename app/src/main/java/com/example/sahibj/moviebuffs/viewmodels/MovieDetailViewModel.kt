@@ -6,6 +6,8 @@ import android.databinding.ObservableField
 import com.example.sahibj.moviebuffs.MovieBuffApplication
 import com.example.sahibj.moviebuffs.data.PopMoviesDataSource
 import com.example.sahibj.moviebuffs.data.PopMoviesRepository
+import com.example.sahibj.moviebuffs.misc.IMAGE_BASE_URL_BACKDROP
+import com.example.sahibj.moviebuffs.misc.IMAGE_BASE_URL_POSTER
 import com.example.sahibj.moviebuffs.models.MovieDetailsResponse
 import javax.inject.Inject
 
@@ -39,8 +41,8 @@ class MovieDetailViewModel(app: Application) : AndroidViewModel(app) {
             popMoviesRepository.getMovie(movieId, object : PopMoviesDataSource.LoadMovieCallback {
                 override fun onMovieLoaded(movieDetailResponse: MovieDetailsResponse) {
                     cachedMovieDetails = movieDetailResponse
-                    backdropImageUrl.set("http://image.tmdb.org/t/p/w780" + movieDetailResponse.backdropPath)
-                    posterImageUrl.set("http://image.tmdb.org/t/p/w780" + movieDetailResponse.posterPath)
+                    backdropImageUrl.set(IMAGE_BASE_URL_BACKDROP + movieDetailResponse.backdropPath)
+                    posterImageUrl.set(IMAGE_BASE_URL_POSTER + movieDetailResponse.posterPath)
                     title.set(movieDetailResponse.title)
                     releaseDate.set(movieDetailResponse.releaseDate)
                     tagline.set(movieDetailResponse.tagline)

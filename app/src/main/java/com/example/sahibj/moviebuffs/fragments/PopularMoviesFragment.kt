@@ -19,7 +19,7 @@ import com.example.sahibj.moviebuffs.data.adapters.MovieAdapter
 import com.example.sahibj.moviebuffs.databinding.PopularMoviesFragmentBinding
 import com.example.sahibj.moviebuffs.misc.EXTRA_FRAGMENT_TYPE
 import com.example.sahibj.moviebuffs.misc.EXTRA_MOVIE_ID
-import com.example.sahibj.moviebuffs.viewmodels.PopMoviesViewModel
+import com.example.sahibj.moviebuffs.viewmodels.*
 
 /**
  * Created by sahibj on 9/30/17.
@@ -37,7 +37,8 @@ class PopularMoviesFragment : LifecycleFragment() {
 
         fragmentType = arguments.getString(EXTRA_FRAGMENT_TYPE)
 
-        binding.viewModel = ViewModelProviders.of(activity).get(PopMoviesViewModel::class.java)
+        binding.viewModel = ViewModelProviders.of(activity)
+                .get(ViewModelFactory().getViewModelClass(fragmentType))
 
         binding.viewModel?.getOpenMovieEvent()?.observe(this,
                 Observer { movieId -> openMovieDetails(movieId) })
@@ -63,7 +64,7 @@ class PopularMoviesFragment : LifecycleFragment() {
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-        binding.viewModel?.start()
+        binding.viewModel?.start(fragmentType)
     }
 
     private fun openMovieDetails(movieId: Int?) {

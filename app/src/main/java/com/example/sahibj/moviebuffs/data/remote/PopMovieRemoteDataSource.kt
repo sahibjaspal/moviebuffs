@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import com.example.sahibj.moviebuffs.MovieBuffApplication
 import com.example.sahibj.moviebuffs.data.PopMoviesDataSource
+import com.example.sahibj.moviebuffs.data.PopMoviesRepository
 import com.example.sahibj.moviebuffs.fragments.PopularMoviesFragment
 import com.example.sahibj.moviebuffs.services.MovieService
 import rx.android.schedulers.AndroidSchedulers
@@ -26,15 +27,15 @@ class PopMovieRemoteDataSource(app: Application) : PopMoviesDataSource {
     @Inject
     lateinit var movieService: MovieService
 
-    override fun getMovies(callback: PopMoviesDataSource.LoadPopMoviesCallback) {
-        movieService.getPopularMovies("popular")
+    override fun getMovies(type: String, callback: PopMoviesDataSource.LoadPopMoviesCallback) {
+        movieService.getPopularMovies(type)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(Schedulers.io())
                 .subscribe({ popularMovieResponse ->
-                    Log.v(PopularMoviesFragment.TAG, "Retrieved popular movies")
+                    Log.v(TAG, "Retrieved movies of type: " + type)
                     callback.onPopMoviesLoaded(popularMovieResponse.movies)
                 }, { t: Throwable ->
-                    Log.e(PopularMoviesFragment.TAG, "Failed to retrieve popular movies", t)
+                    Log.e(TAG, "Failed to retrieve movies: " + type, t)
                     callback.onDataNotAvailable()
                 })
     }
