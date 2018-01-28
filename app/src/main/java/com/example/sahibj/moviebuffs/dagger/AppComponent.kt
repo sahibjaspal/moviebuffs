@@ -17,7 +17,6 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(AppModule::class, NetworkModule::class, MovieServiceMod::class))
 interface AppComponent {
 
-    fun inject(activity: PopularMoviesFragment)
     fun inject(activity: PopMoviesViewModel)
     fun inject(movieDetailActivity: MovieDetailActivity)
     fun inject(popMovieRemoteDataSource: PopMovieRemoteDataSource)

@@ -13,8 +13,6 @@ class MovieDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        (application as MovieBuffApplication).getNetComponent().inject(this)
-
         setContentView(R.layout.activity_movie_detail)
 
         setSupportActionBar(findViewById(R.id.toolbar))
