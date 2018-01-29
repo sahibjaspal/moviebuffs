@@ -4,6 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
+import android.databinding.ObservableField
 import android.databinding.ObservableList
 import com.example.sahibj.moviebuffs.MovieBuffApplication
 import com.example.sahibj.moviebuffs.data.PopMoviesDataSource
@@ -26,8 +27,10 @@ class HorizontalRVViewModel(app: Application) : AndroidViewModel(app) {
 
     val altMovies: ObservableList<Movie> = ObservableArrayList()
     val dataLoading = ObservableBoolean(false)
+    val label : ObservableField<String> = ObservableField()
 
     fun loadAltMovies(movieId: Int, type: String) {
+        setLabel(type)
         if (altMovies.isEmpty()) {
             dataLoading.set(true)
             popMoviesRepository.getAltMovies(movieId, type, object : PopMoviesDataSource.AltMoviesCallback {
@@ -41,6 +44,14 @@ class HorizontalRVViewModel(app: Application) : AndroidViewModel(app) {
 
                 }
             })
+        }
+    }
+
+    private fun setLabel(type: String) {
+        if(type == "similar"){
+            label.set("Similar Movies")
+        }else{
+            label.set("Recommended Movies")
         }
     }
 }

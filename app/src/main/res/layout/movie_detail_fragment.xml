@@ -122,21 +122,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/overview_label"
                 tools:text="This is the overview" />
 
-            <TextView
-                android:id="@+id/cast_label"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/darkGray"
-                android:paddingBottom="4dp"
-                android:paddingLeft="16dp"
-                android:paddingTop="4dp"
-                android:text="Cast"
-                android:textColor="@android:color/white"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/overview" />
-
             <FrameLayout
                 android:id="@+id/movie_cast_container"
                 android:layout_width="0dp"
@@ -145,25 +130,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cast_label"
+                app:layout_constraintTop_toBottomOf="@+id/overview"
                 tools:background="@color/colorAccent"
                 tools:layout_height="200dp"
                 tools:layout_width="200dp" />
-
-            <TextView
-                android:id="@+id/similar_movie_label"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/darkGray"
-                android:paddingBottom="4dp"
-                android:paddingLeft="16dp"
-                android:paddingTop="4dp"
-                android:text="Similar Movies"
-                android:textColor="@android:color/white"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/movie_cast_container" />
 
             <FrameLayout
                 android:id="@+id/similar_movie_container"
@@ -173,26 +143,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/similar_movie_label"
+                app:layout_constraintTop_toBottomOf="@+id/movie_cast_container"
                 tools:background="@color/colorAccent"
                 tools:layout_height="200dp"
                 tools:layout_width="200dp" />
-
-            <TextView
-                android:id="@+id/recommendations_movie_label"
-                style="@style/TextAppearance.AppCompat.Medium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/darkGray"
-                android:paddingBottom="4dp"
-                android:paddingLeft="16dp"
-                android:paddingTop="4dp"
-                android:text="Recommended Movies"
-                android:textColor="@android:color/white"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/similar_movie_container" />
 
             <FrameLayout
                 android:id="@+id/recommendations_movie_container"
@@ -202,7 +156,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/recommendations_movie_label"
+                app:layout_constraintTop_toBottomOf="@+id/similar_movie_container"
                 tools:background="@color/colorPrimary"
                 tools:layout_height="200dp"
                 tools:layout_width="200dp" />

@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.sahibj.moviebuffs.R
 import com.example.sahibj.moviebuffs.databinding.AltMovieItemBinding
 import com.example.sahibj.moviebuffs.misc.IMAGE_BASE_URL_POSTER
+import com.example.sahibj.moviebuffs.misc.IMAGE_BASE_URL_POSTER_SMALL
 import com.example.sahibj.moviebuffs.models.Movie
 import com.example.sahibj.moviebuffs.viewmodels.HorizontalRVViewModel
 
@@ -34,7 +35,7 @@ class HorizontalRVMoviesAdapter(var viewModel: HorizontalRVViewModel)
         val movie = similarMovies[position]
 
         Glide.with(holder.movieView.context)
-                .load(IMAGE_BASE_URL_POSTER + movie.posterPath)
+                .load(IMAGE_BASE_URL_POSTER_SMALL + movie.posterPath)
                 .into(holder.movieView)
     }
 
