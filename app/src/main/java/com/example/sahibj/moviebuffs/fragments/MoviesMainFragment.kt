@@ -30,6 +30,7 @@ class MoviesMainFragment : Fragment() {
         activity.title = "Movies"
 
         binding.movieViewPager.adapter = MovieFragmentPagerAdapter(activity.supportFragmentManager)
+        binding.movieViewPager.offscreenPageLimit = 2
         binding.tablayout.setupWithViewPager(binding.movieViewPager)
         return binding.root
     }

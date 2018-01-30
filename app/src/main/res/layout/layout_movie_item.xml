@@ -6,15 +6,11 @@
         <variable
             name="movie"
             type="com.example.sahibj.moviebuffs.models.Movie"/>
-        <variable
-            name="listener"
-            type="com.example.sahibj.moviebuffs.useractions.MovieItemUserActionsListener" />
     </data>
 
     <ImageView
         android:id="@+id/movie_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:onClick="@{() -> listener.onMovieItemClicked(movie)}" />
+        android:adjustViewBounds="true" />
 </layout>

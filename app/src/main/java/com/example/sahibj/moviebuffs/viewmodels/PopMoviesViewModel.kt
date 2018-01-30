@@ -5,6 +5,7 @@ import android.arch.lifecycle.AndroidViewModel
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableList
+import android.util.Log
 import com.example.sahibj.moviebuffs.MovieBuffApplication
 import com.example.sahibj.moviebuffs.data.PopMoviesDataSource
 import com.example.sahibj.moviebuffs.data.PopMoviesRepository
@@ -25,18 +26,16 @@ open class PopMoviesViewModel(app: Application) : AndroidViewModel(app) {
     lateinit var popMoviesRepository: PopMoviesRepository
 
     private val openMovieEvent = SingleLiveEvent<Int>()
-    val movies: ObservableList<Movie> = ObservableArrayList()
+    val movies: ObservableArrayList<Movie> = ObservableArrayList()
     val dataLoading = ObservableBoolean(false)
 
     fun getOpenMovieEvent(): SingleLiveEvent<Int> = openMovieEvent
 
     fun start(type: String) {
-        val type = type.toLowerCase().replace(" ", "_")
+        val path = type.toLowerCase().replace(" ", "_")
         if (movies.isEmpty()) {
-            dataLoading.set(true)
-            popMoviesRepository.getMovies(type, object : PopMoviesDataSource.LoadPopMoviesCallback {
+            popMoviesRepository.getMovies(path, object : PopMoviesDataSource.LoadPopMoviesCallback {
                 override fun onPopMoviesLoaded(popMovies: List<Movie>) {
-                    dataLoading.set(false)
                     movies.clear()
                     movies.addAll(popMovies)
                 }

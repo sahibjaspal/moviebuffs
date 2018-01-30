@@ -37,7 +37,7 @@ class PopularMoviesFragment : LifecycleFragment() {
 
         fragmentType = arguments.getString(EXTRA_FRAGMENT_TYPE)
 
-        binding.viewModel = ViewModelProviders.of(activity)
+        binding.viewModel = ViewModelProviders.of(this)
                 .get(ViewModelFactory().getViewModelClass(fragmentType))
 
         binding.viewModel?.getOpenMovieEvent()?.observe(this,
@@ -60,7 +60,7 @@ class PopularMoviesFragment : LifecycleFragment() {
         }
 
         binding.movies.layoutManager = layoutManager
-        binding.movies.adapter = MovieAdapter(binding.viewModel!!, fragmentType)
+        binding.movies.adapter = MovieAdapter(binding.viewModel!!.movies, fragmentType)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {

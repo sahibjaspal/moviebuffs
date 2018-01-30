@@ -1,6 +1,7 @@
 package com.example.sahibj.moviebuffs.data.remote
 
 import android.app.Application
+import android.support.annotation.MainThread
 import android.util.Log
 import com.example.sahibj.moviebuffs.MovieBuffApplication
 import com.example.sahibj.moviebuffs.data.PopMoviesDataSource
@@ -30,7 +31,7 @@ class PopMovieRemoteDataSource(app: Application) : PopMoviesDataSource {
     override fun getMovies(type: String, callback: PopMoviesDataSource.LoadPopMoviesCallback) {
         movieService.getPopularMovies(type)
                 .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ popularMovieResponse ->
                     Log.v(TAG, "Retrieved movies of type: " + type)
                     callback.onPopMoviesLoaded(popularMovieResponse.movies)

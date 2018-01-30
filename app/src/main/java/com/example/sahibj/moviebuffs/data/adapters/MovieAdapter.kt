@@ -1,54 +1,78 @@
 package com.example.sahibj.moviebuffs.data.adapters
 
 import android.databinding.DataBindingUtil
+import android.databinding.ObservableArrayList
 import android.databinding.ObservableList
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.sahibj.moviebuffs.R
 import com.example.sahibj.moviebuffs.databinding.LayoutMovieItemBinding
 import com.example.sahibj.moviebuffs.misc.IMAGE_BASE_URL_POSTER
 import com.example.sahibj.moviebuffs.models.Movie
-import com.example.sahibj.moviebuffs.useractions.MovieItemUserActionsListener
-import com.example.sahibj.moviebuffs.viewmodels.PopMoviesViewModel
 
 /**
  * Created by sahibj on 9/24/17.
  */
-class MovieAdapter(private val viewModel: PopMoviesViewModel, private val fragmentType: String)
-    : RecyclerView.Adapter<MovieAdapter.ViewHolder>(), MovieItemUserActionsListener {
+class MovieAdapter
+    : RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
-    private lateinit var binding: LayoutMovieItemBinding
-    val movies: ObservableList<Movie> = viewModel.movies
+    val movies: ObservableList<Movie>
+    private val fragmentType: String
+
+    constructor(movies: ObservableArrayList<Movie>, fragmentType: String) : super() {
+        this.movies = movies
+        this.fragmentType = fragmentType
+        this.movies.addOnListChangedCallback(object: ObservableList.OnListChangedCallback<ObservableArrayList<Movie>>(){
+            override fun onItemRangeRemoved(p0: ObservableArrayList<Movie>?, p1: Int, p2: Int) {
+                Log.v("akash2", "item range removed called")
+            }
+
+            override fun onChanged(p0: ObservableArrayList<Movie>?) {
+                Log.v("akash2", "onchanged called")
+
+            }
+
+            override fun onItemRangeChanged(p0: ObservableArrayList<Movie>?, p1: Int, p2: Int) {
+                Log.v("akash2", "item range changed called")
+            }
+
+            override fun onItemRangeInserted(p0: ObservableArrayList<Movie>?, p1: Int, p2: Int) {
+                Log.v("akash2", "item range inserted called")
+                notifyDataSetChanged()
+            }
+
+            override fun onItemRangeMoved(p0: ObservableArrayList<Movie>?, p1: Int, p2: Int, p3: Int) {
+                Log.v("akash2", "item range moved called")
+            }
+        })
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        binding = DataBindingUtil.inflate<LayoutMovieItemBinding>(
+        val binding = DataBindingUtil.inflate<LayoutMovieItemBinding>(
                 LayoutInflater.from(parent.context), R.layout.layout_movie_item, parent, false)
-
-        binding.listener = this
 
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        binding.movie = movies[position]
         val movie = movies[position]
-        Glide.with(holder.movieView.context)
+        holder.binding.movie = movie
+        holder.binding.movieImage.setOnClickListener { view -> holder.binding.movie }
+        Glide.with(holder.binding.movieImage.context)
                 .load(IMAGE_BASE_URL_POSTER + movie.posterPath)
-                .into(holder.movieView)
+                .into(holder.binding.movieImage)
     }
 
     override fun getItemCount(): Int = movies.size
 
-    inner class ViewHolder(binding: LayoutMovieItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding: LayoutMovieItemBinding) :
+            RecyclerView.ViewHolder(binding.root)
 
-        internal var movieView: ImageView = binding.movieImage
-    }
-
-    override fun onMovieItemClicked(movie: Movie) {
-        viewModel.getOpenMovieEvent().value = movie.id
-    }
+//    override fun onMovieItemClicked() {
+//        viewModel.getOpenMovieEvent().value =
+//    }
 }
