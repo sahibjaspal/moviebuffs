@@ -16,8 +16,11 @@ import com.example.sahibj.moviebuffs.models.Movie
 /**
  * Created by sahibj on 9/24/17.
  */
-class MovieAdapter
-    : RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+
+    companion object {
+        val TAG = MovieAdapter.javaClass.simpleName
+    }
 
     val movies: ObservableList<Movie>
     private val fragmentType: String
@@ -27,25 +30,25 @@ class MovieAdapter
         this.fragmentType = fragmentType
         this.movies.addOnListChangedCallback(object: ObservableList.OnListChangedCallback<ObservableArrayList<Movie>>(){
             override fun onItemRangeRemoved(p0: ObservableArrayList<Movie>?, p1: Int, p2: Int) {
-                Log.v("akash2", "item range removed called")
+                Log.v(TAG, "item range removed called")
             }
 
             override fun onChanged(p0: ObservableArrayList<Movie>?) {
-                Log.v("akash2", "onchanged called")
+                Log.v(TAG, "onchanged called")
 
             }
 
             override fun onItemRangeChanged(p0: ObservableArrayList<Movie>?, p1: Int, p2: Int) {
-                Log.v("akash2", "item range changed called")
+                Log.v(TAG, "item range changed called")
             }
 
             override fun onItemRangeInserted(p0: ObservableArrayList<Movie>?, p1: Int, p2: Int) {
-                Log.v("akash2", "item range inserted called")
+                Log.v(TAG, "item range inserted called")
                 notifyDataSetChanged()
             }
 
             override fun onItemRangeMoved(p0: ObservableArrayList<Movie>?, p1: Int, p2: Int, p3: Int) {
-                Log.v("akash2", "item range moved called")
+                Log.v(TAG, "item range moved called")
             }
         })
     }
@@ -71,8 +74,4 @@ class MovieAdapter
 
     inner class ViewHolder(val binding: LayoutMovieItemBinding) :
             RecyclerView.ViewHolder(binding.root)
-
-//    override fun onMovieItemClicked() {
-//        viewModel.getOpenMovieEvent().value =
-//    }
 }
